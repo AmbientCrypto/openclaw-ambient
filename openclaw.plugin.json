@@ -1,0 +1,26 @@
+{
+  "id": "ambient",
+  "name": "Ambient",
+  "description": "Ambient inference provider",
+  "providers": ["ambient"],
+  "modelSupport": {
+    "modelPrefixes": ["ambient/"]
+  },
+  "providerAuthEnvVars": {
+    "ambient": ["AMBIENT_API_KEY"]
+  },
+  "providerAuthChoices": [
+    {
+      "provider": "ambient",
+      "method": "api-key",
+      "choiceId": "ambient-api-key",
+      "choiceLabel": "Ambient API key",
+      "groupId": "ambient",
+      "groupLabel": "Ambient",
+      "cliFlag": "--ambient-api-key",
+      "cliOption": "--ambient-api-key <key>",
+      "cliDescription": "Ambient API key"
+    }
+  ],
+  "configSchema": { "type": "object", "additionalProperties": false }
+}
