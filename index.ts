@@ -40,7 +40,7 @@ export default defineSingleProviderPluginEntry({
       {
         methodId: "api-key",
         label: "Ambient API key",
-        hint: "API key from your Ambient dashboard",
+        hint: "API key from https://app.ambient.xyz",
         optionKey: "ambientApiKey",
         flagName: "--ambient-api-key",
         envVar: "AMBIENT_API_KEY",

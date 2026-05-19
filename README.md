@@ -20,7 +20,7 @@ openclaw onboard --auth-choice ambient-api-key --ambient-api-key "$AMBIENT_API_K
 
 ## Get an API key
 
-Sign up at https://ambient.xyz and create an API key. Export it as `AMBIENT_API_KEY` or pass `--ambient-api-key` to onboarding.
+Sign up at https://app.ambient.xyz and create an API key. Export it as `AMBIENT_API_KEY` or pass `--ambient-api-key` to onboarding.
 
 ## Endpoints
 
