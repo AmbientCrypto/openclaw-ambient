@@ -6,8 +6,14 @@
   "modelSupport": {
     "modelPrefixes": ["ambient/"]
   },
-  "providerAuthEnvVars": {
-    "ambient": ["AMBIENT_API_KEY"]
+  "setup": {
+    "providers": [
+      {
+        "id": "ambient",
+        "authMethods": ["api-key"],
+        "envVars": ["AMBIENT_API_KEY"]
+      }
+    ]
   },
   "providerAuthChoices": [
     {
