@@ -1,16 +1,16 @@
 import { defineSingleProviderPluginEntry } from "openclaw/plugin-sdk/provider-entry";
 import { buildProviderReplayFamilyHooks } from "openclaw/plugin-sdk/provider-model-shared";
+import type { ModelDefinitionConfig } from "openclaw/plugin-sdk/provider-model-types";
 
 const PROVIDER_ID = "ambient";
 const BASE_URL = "https://api.ambient.xyz/v1";
 
-const MODELS = [
+const MODELS: ModelDefinitionConfig[] = [
   {
     id: "zai-org/GLM-5.1-FP8",
     name: "GLM 5.1",
     input: ["text"],
     reasoning: true,
-    tools: true,
     contextWindow: 202_752,
     maxTokens: 131_072,
     cost: { input: 1.4, output: 4.4, cacheRead: 0, cacheWrite: 0 },
@@ -20,7 +20,6 @@ const MODELS = [
     name: "Kimi K2.6",
     input: ["text", "image"],
     reasoning: true,
-    tools: true,
     contextWindow: 262_144,
     maxTokens: 262_144,
     cost: { input: 0.95, output: 4.0, cacheRead: 0.2, cacheWrite: 0 },
@@ -49,16 +48,15 @@ export default defineSingleProviderPluginEntry({
       },
     ],
     catalog: {
-      buildProvider: (ctx) => ({
+      buildProvider: () => ({
         api: "openai-completions",
         baseUrl: BASE_URL,
-        apiKey: ctx.resolveProviderApiKey(PROVIDER_ID).apiKey,
         models: MODELS,
       }),
       buildStaticProvider: () => ({
         api: "openai-completions",
         baseUrl: BASE_URL,
-        models: MODELS.map(({ id, name }) => ({ id, name })),
+        models: MODELS,
       }),
     },
     ...buildProviderReplayFamilyHooks({
