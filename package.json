@@ -9,12 +9,17 @@
     "url": "git+https://github.com/AmbientCrypto/openclaw-ambient.git"
   },
   "files": [
+    "dist/",
     "index.ts",
     "openclaw.plugin.json",
     "README.md"
   ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "tsc"
+  },
   "openclaw": {
-    "extensions": ["./index.ts"],
+    "extensions": ["./dist/index.js"],
     "providers": ["ambient"],
     "compat": {
       "pluginApi": ">=2026.5.4",
