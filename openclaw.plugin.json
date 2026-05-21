@@ -15,6 +15,37 @@
       }
     ]
   },
+  "modelCatalog": {
+    "providers": {
+      "ambient": {
+        "baseUrl": "https://api.ambient.xyz/v1",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "zai-org/GLM-5.1-FP8",
+            "name": "GLM 5.1",
+            "reasoning": true,
+            "input": ["text"],
+            "contextWindow": 202752,
+            "maxTokens": 131072,
+            "cost": { "input": 1.4, "output": 4.4, "cacheRead": 0, "cacheWrite": 0 }
+          },
+          {
+            "id": "moonshotai/kimi-k2.6",
+            "name": "Kimi K2.6",
+            "reasoning": true,
+            "input": ["text", "image"],
+            "contextWindow": 262144,
+            "maxTokens": 262144,
+            "cost": { "input": 0.95, "output": 4.0, "cacheRead": 0.2, "cacheWrite": 0 }
+          }
+        ]
+      }
+    },
+    "discovery": {
+      "ambient": "static"
+    }
+  },
   "providerAuthChoices": [
     {
       "provider": "ambient",
