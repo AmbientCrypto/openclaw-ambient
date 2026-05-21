@@ -1,6 +1,11 @@
 import { defineSingleProviderPluginEntry } from "openclaw/plugin-sdk/provider-entry";
 import { buildProviderReplayFamilyHooks } from "openclaw/plugin-sdk/provider-model-shared";
 import type { ModelDefinitionConfig } from "openclaw/plugin-sdk/provider-model-types";
+import {
+  applyAgentDefaultModelPrimary,
+  applyProviderConfigWithModelCatalog,
+  type OpenClawConfig,
+} from "openclaw/plugin-sdk/provider-onboard";
 
 const PROVIDER_ID = "ambient";
 const BASE_URL = "https://api.ambient.xyz/v1";
@@ -28,6 +33,17 @@ const MODELS: ModelDefinitionConfig[] = [
 
 const DEFAULT_MODEL_REF = `${PROVIDER_ID}/zai-org/GLM-5.1-FP8`;
 
+function applyAmbientConfig(cfg: OpenClawConfig): OpenClawConfig {
+  const withCatalog = applyProviderConfigWithModelCatalog(cfg, {
+    agentModels: cfg.agents?.defaults?.models ?? {},
+    providerId: PROVIDER_ID,
+    api: "openai-completions",
+    baseUrl: BASE_URL,
+    catalogModels: MODELS,
+  });
+  return applyAgentDefaultModelPrimary(withCatalog, DEFAULT_MODEL_REF);
+}
+
 export default defineSingleProviderPluginEntry({
   id: PROVIDER_ID,
   name: "Ambient",
@@ -45,6 +61,7 @@ export default defineSingleProviderPluginEntry({
         envVar: "AMBIENT_API_KEY",
         promptMessage: "Enter your Ambient API key",
         defaultModel: DEFAULT_MODEL_REF,
+        applyConfig: applyAmbientConfig,
       },
     ],
     catalog: {
